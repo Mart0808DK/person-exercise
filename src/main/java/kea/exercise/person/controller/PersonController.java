@@ -55,4 +55,12 @@ public class PersonController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("persons/{id}")
+    public ResponseEntity<Person> deletePerson(@PathVariable int id){
+        Optional<Person> person = personRepository.findById(id);
+        personRepository.deleteById(id);
+        return ResponseEntity.of(person);
+    }
 }
+
